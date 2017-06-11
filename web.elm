@@ -2,39 +2,40 @@ module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
+import Html.Events exposing (onClick)
 
-main = beginnerProgram
-  { model = model
-  , update = update
-  , view = view
-  }
-
-model =
-  { name = "My Cool Counter"
-  , count = 0
-  }
+type Actions
+  = Increment
+  | Decrement
 
 type alias Model =
   { name: String
   , count: Int
   }
 
-type Message
-  = Increment
-  | Decrement
+model =
+  {
+  name = "My Cool Item"
+  , count = 0
+  }
 
-update : Message -> Model -> Model
-update message model =
-  case message of
+update action model =
+  case action of
     Increment -> { model | count = model.count + 1}
     Decrement -> { model | count = model.count - 1}
 
-view : Model -> Html Message
 view model =
   div []
-  [ h1 [] [text model.name]
-  , div [] [text (toString model.count)]
-  , button [onClick Increment] [text "Increment"]
-  , button [onClick Decrement] [text "Decrement"]
-  ]
+    [
+    h1 [] [text model.name]
+    , h3 [] [text (toString model.count)]
+    , button [onClick Increment] [text "Increment"]
+    , button [onClick Decrement] [text "Decrement"]
+    ]
+
+main =
+  beginnerProgram {
+    model = model,
+    update = update,
+    view = view
+  }
