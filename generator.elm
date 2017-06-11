@@ -1,7 +1,6 @@
 module Numbers exposing (..)
 
 import Html exposing (..)
-import Html exposing (beginnerProgram)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
